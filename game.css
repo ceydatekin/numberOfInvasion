@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+body {
+    overflow: hidden!important;
+    height: 100vh;
+    background: rgb(63, 61, 61);
+}
+
+.hidden {
+    display: none !important;
+}
+
+canvas {
+    border: 2px solid rgb(215, 158, 233);
+    cursor: crosshair;
+}
+
+div#score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.603);
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+div#kills {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.534);
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+div#stop {
+    position: absolute;
+    top: 0px;
+    right: 1px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+.stp button {
+    background-color: teal;
+    padding: 0.5rem;
+    border-radius: 3rem;
+    color: rgba(255, 255, 255, 0.534);
+}
+
+.stp button:hover {
+    background-color: rgba(131, 93, 153, 0.952);
+    padding: 0.5rem;
+    border-radius: 4rem;
+    color: rgb(176, 207, 207);
+}
+
+.panel {
+    background: rgb(46, 90, 90);
+    position: absolute;
+    padding: 2rem;
+    border-radius: 3rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel h2 {
+    color: rgb(162, 91, 212);
+}
+
+.panel p {
+    color: rgb(80, 6, 139);
+    margin: 2rem;
+}
+
+.panel button {
+    outline: none;
+    border: none;
+    background: rgb(85, 81, 136);
+    color: white;
+    padding: .5rem 1.5rem;
+    font-size: 1.4rem;
+    border-radius: 3rem;
+    position: relative;
+    transition: ease-out 0.3s;
+    z-index: 1;
+}
+
+.panel button:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: tan;
+}
+
+.panel button:hover:before {
+    transition: 0.5s all ease;
+    opacity: 1;
+    z-index: -1;
+}
