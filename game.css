@@ -5,7 +5,9 @@
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
 }
-
+Html body{
+    overflow: hidden;
+}
 body {
     overflow: hidden!important;
     height: 100vh;
