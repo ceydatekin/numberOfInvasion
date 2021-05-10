@@ -5,13 +5,20 @@
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
 }
-Html body{
+
+Html {
     overflow: hidden;
 }
+
 body {
-    overflow: hidden!important;
+    background: url('/picures/pexels-mont-photographs-2948636.jpg') no-repeat center center fixed #000;
+    background-size: cover;
+    font-family: Verdana, monospace, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: justify;
     height: 100vh;
-    background: rgb(63, 61, 61);
+    overflow: hidden;
 }
 
 .hidden {
@@ -19,7 +26,6 @@ body {
 }
 
 canvas {
-    border: 2px solid rgb(215, 158, 233);
     cursor: crosshair;
 }
 
@@ -53,14 +59,14 @@ div#stop {
 }
 
 .stp button {
-    background-color: teal;
+    background-color: rgb(28, 199, 199);
     padding: 0.5rem;
     border-radius: 3rem;
-    color: rgba(255, 255, 255, 0.534);
+    color: rgba(219, 114, 223, 0.74);
 }
 
 .stp button:hover {
-    background-color: rgba(131, 93, 153, 0.952);
+    background-color: rgba(68, 7, 100, 0.952);
     padding: 0.5rem;
     border-radius: 4rem;
     color: rgb(176, 207, 207);
@@ -81,18 +87,18 @@ div#stop {
 }
 
 .panel h2 {
-    color: rgb(162, 91, 212);
+    color: rgb(206, 201, 209);
 }
 
 .panel p {
-    color: rgb(80, 6, 139);
+    color: rgb(213, 212, 214);
     margin: 2rem;
 }
 
 .panel button {
     outline: none;
     border: none;
-    background: rgb(85, 81, 136);
+    background: rgb(163, 106, 180);
     color: white;
     padding: .5rem 1.5rem;
     font-size: 1.4rem;
