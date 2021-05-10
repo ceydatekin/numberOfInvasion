@@ -14,7 +14,15 @@ canvas.height = height;
 const ctx = canvas.getContext("2d");
 var n, a;
 ctx.clearRect(0, 0, width, height);
+var ses = new Audio();
+ses.src = "sounds/cartoon-jump-sound-effect.mp3";
+var sesson = new Audio();
+sesson.src = "sounds/arcade-retro-game-over-sound-effects-snd-effects.mp3";
+var bulletses = new Audio();
+bulletses.src = "sounds/mario-ziplama-sesi.mp3";
 
+const background = new Image();
+background.src = "picures/background.jpg";
 
 canvas.addEventListener("mousemove", (e) => {
     if (playing) {
@@ -30,6 +38,7 @@ canvas.addEventListener("mousemove", (e) => {
 
 canvas.addEventListener("click", (e) => {
     if (playing) {
+        bulletses.play();
         bullets.push(new Circle(player.x, player.y, e.pageX, e.pageY, 5, 'white', 5)); //her tıklanmada mermi oluşumunu sağlar.
     }
 
@@ -48,6 +57,7 @@ class Circle {
         this.s = s; //speed hız
     }
     draw() { //mermilerimizi çizmek için kullanırız.
+
         ctx.fillStyle = this.c;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -157,9 +167,11 @@ class Circle {
         this.x += (dx / hp) * this.s;
         this.y += (dy / hp) * this.s;
 
+
     }
 
     remove() { //sayfadan çıkan mermi ve düşmanlarımızın listeden temizlenmesini sağlarız.
+
         if ((this.x < 0 || this.x > width) || (this.y < 0 || this.y > height)) {
             return true;
         }
@@ -218,10 +230,14 @@ function addEnemy() {
 }
 
 function collision(x1, y1, r1, x2, y2, r2) { //daireler birbirine değdi mi?
+
     var dx = x1 - x2;
     var dy = y1 - y2;
     var hp = Math.sqrt((dx * dx) + (dy * dy));
     if (hp < (r1 + r2)) {
+        if (r1 < 15) {
+            ses.play();
+        }
         return true;
     }
     return false;
@@ -230,14 +246,7 @@ function collision(x1, y1, r1, x2, y2, r2) { //daireler birbirine değdi mi?
 function animate() { //Oyun Çalıştırılır.
     if (playing) {
         requestAnimationFrame(animate);
-        var grd = ctx.createLinearGradient(0, 0, width, height);
-        grd.addColorStop(0, "#360638");
-        grd.addColorStop(1, "#7d8777");
-        ctx.fillStyle = grd;
-        ctx.fillRect(10, 10, 800, 80);
-
-        ctx.fillRect(0, 0, width, height);
-        ctx.fill();
+        ctx.drawImage(background, 0, 0, width, height);
 
         enemies.forEach((enemy, e) => {
             bullets.forEach((bullet, b) => {
@@ -261,6 +270,7 @@ function animate() { //Oyun Çalıştırılır.
             });
 
             if (collision(enemy.x, enemy.y, enemy.r, player.x, player.y, player.r)) {
+                sesson.play();
                 startdiv.classList.remove("hidden");
                 btn.textContent = "TRY AGAIN";
                 startdiv.style.backgroundColor = "#41bab8";
@@ -320,6 +330,7 @@ function init() {
     enemies = [];
     maxenemy = 2;
     startdiv.classList.add("hidden");
+
     player = new Player(width / 2, height / 2, 20, "#006064");
     addEnemy();
     animate();
