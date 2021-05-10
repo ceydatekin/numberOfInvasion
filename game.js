@@ -284,7 +284,22 @@ function animate() { //Oyun Çalıştırılır.
                 startdiv.style.backgroundColor = "#41bab8";
                 p.style.color = "#2d102e";
                 h2.style.color = "#2d102e";
-                p.innerHTML = "GAME OVER <br/> SCORE : " + score;
+                if (score > highscore1) {
+                    highscore1 = score;
+                }
+                if (score > highscore2 && score < highscore1) {
+                    highscore2 = score;
+                }
+                if (score > highscore2 && score < highscore1) {
+                    highscore2 = score;
+                }
+                if (score > highscore3 && score < highscore2) {
+                    highscore3 = score;
+                }
+                p.innerHTML = "GAME OVER <br/> SCORE : " + score +
+                    "<br/> <br/>  Highscore 1 :" + highscore1 +
+                    "<br/> Highscore  2 :" + highscore2 +
+                    "<br/> Highscore  3 :" + highscore3;
                 playing = false;
             }
 
@@ -346,4 +361,6 @@ function init() {
 
 
 var playing = false;
-var player, angle, bullets, enemies, maxenemy, score, kills;
+var player, angle, bullets, enemies, maxenemy, score, kills, highscore1 = 0,
+    highscore2 = 0,
+    highscore3 = 0;
