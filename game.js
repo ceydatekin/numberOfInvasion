@@ -3,6 +3,7 @@ const stopdiv = document.getElementById("stop");
 const btnstp = document.getElementById("#stop button");
 const btn = document.querySelector("#start button");
 const p = document.querySelector("#start p");
+const h2 = document.querySelector("#start h2");
 const scorediv = document.getElementById("score");
 const killsdiv = document.getElementById("kills");
 const canvas = document.getElementById("canvas");
@@ -57,16 +58,17 @@ class Circle {
     drawi() { //düşmanlarımızı çizmek için kullanırız.
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.strokeStyle = "hsl(" + Math.random() * 360 + ",40%,50%)";
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = this.c;
+        ctx.lineWidth = 2;
         ctx.stroke();
-        ctx.strokeStyle = "#7986CB";
         ctx.font = "20px Arial";
+
 
         if (a == 2) {
             if (this.r < 15) {
                 n = 2;
                 ctx.strokeText(n, this.x - 5, this.y + 5);
+
             }
             if (this.r > 15 && this.r <= 20) {
                 n = 4;
@@ -183,7 +185,7 @@ class Player {
         ctx.strokeStyle = "#B2EBF2";
         ctx.lineWidth = 2;
         ctx.stroke();
-        ctx.strokeStyle = "#006064";
+        ctx.strokeStyle = "#edfffd";
         ctx.font = "20px Arial";
         ctx.strokeText(a, -5, 5);
         ctx.fillStyle = this.c;
@@ -198,7 +200,7 @@ class Player {
 function addEnemy() {
     for (var i = enemies.length; i < maxenemy; i++) {
         var r = Math.random() * 30 + 20;
-        var c = "hsl(" + Math.random() * 360 + ",0%,0%)";
+        var c = "hsl(" + Math.random() * 360 + ",100%,80%)";
         var s = .5 + ((50 - ((r / 50) * r)) / 100) * maxenemy;
 
         var x, y;
@@ -228,8 +230,12 @@ function collision(x1, y1, r1, x2, y2, r2) { //daireler birbirine değdi mi?
 function animate() { //Oyun Çalıştırılır.
     if (playing) {
         requestAnimationFrame(animate);
+        var grd = ctx.createLinearGradient(0, 0, width, height);
+        grd.addColorStop(0, "#360638");
+        grd.addColorStop(1, "#7d8777");
+        ctx.fillStyle = grd;
+        ctx.fillRect(10, 10, 800, 80);
 
-        ctx.fillStyle = "rgba(38,33,56,.18)";
         ctx.fillRect(0, 0, width, height);
         ctx.fill();
 
@@ -257,7 +263,10 @@ function animate() { //Oyun Çalıştırılır.
             if (collision(enemy.x, enemy.y, enemy.r, player.x, player.y, player.r)) {
                 startdiv.classList.remove("hidden");
                 btn.textContent = "TRY AGAIN";
-                p.innerHTML = "GAME OVER <br/> Puan : " + score;
+                startdiv.style.backgroundColor = "#41bab8";
+                p.style.color = "#2d102e";
+                h2.style.color = "#2d102e";
+                p.innerHTML = "GAME OVER <br/> SCORE : " + score;
                 playing = false;
             }
 
@@ -290,10 +299,15 @@ function animate() { //Oyun Çalıştırılır.
 }
 
 function stop() {
+
+    stopdiv.classList.remove("hidden");
     startdiv.classList.remove("hidden");
+    startdiv.style.backgroundColor = "#41bab8";
+    btn.textContent = "TRY AGAIN";
+    p.style.color = "#2d102e";
+    h2.style.color = "#2d102e";
+    p.innerHTML = "GAME OVER <br/> SCORE : " + score;
     playing = false;
-    btnstp.textContent = "TRY AGAIN";
-    p.innerHTML = "GAME OVER <br/> Puan : " + score;
 
 }
 
@@ -306,7 +320,6 @@ function init() {
     enemies = [];
     maxenemy = 2;
     startdiv.classList.add("hidden");
-
     player = new Player(width / 2, height / 2, 20, "#006064");
     addEnemy();
     animate();
