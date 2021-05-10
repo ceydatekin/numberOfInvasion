@@ -11,7 +11,7 @@ Html {
 }
 
 body {
-    background: url('/picures/pexels-mont-photographs-2948636.jpg') no-repeat center center fixed #000;
+    background: url('https://user-images.githubusercontent.com/54938901/117694111-6ff70500-b1c7-11eb-817c-f679c3176d7a.jpg') no-repeat center center fixed #000;
     background-size: cover;
     font-family: Verdana, monospace, sans-serif;
     font-size: 12px;
