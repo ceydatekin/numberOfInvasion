@@ -22,7 +22,7 @@ var bulletses = new Audio();
 bulletses.src = "sounds/mario-ziplama-sesi.mp3";
 
 const background = new Image();
-background.src = "picures/background.jpg";
+background.src = "https://user-images.githubusercontent.com/54938901/117718838-54025c00-b1e5-11eb-8a60-9c63390ac9f6.jpg";
 
 canvas.addEventListener("mousemove", (e) => {
     if (playing) {
@@ -246,6 +246,14 @@ function collision(x1, y1, r1, x2, y2, r2) { //daireler birbirine değdi mi?
 function animate() { //Oyun Çalıştırılır.
     if (playing) {
         requestAnimationFrame(animate);
+        var grd = ctx.createLinearGradient(0, 0, width, height);
+        grd.addColorStop(0, "#360638");
+        grd.addColorStop(1, "#7d8777");
+        ctx.fillStyle = grd;
+        ctx.fillRect(10, 10, 800, 80);
+
+        ctx.fillRect(0, 0, width, height);
+        ctx.fill();
         ctx.drawImage(background, 0, 0, width, height);
 
         enemies.forEach((enemy, e) => {
