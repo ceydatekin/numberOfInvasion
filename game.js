@@ -18,8 +18,8 @@ var ses = new Audio();
 ses.src = "sounds/cartoon-jump-sound-effect.mp3";
 var sesson = new Audio();
 sesson.src = "sounds/arcade-retro-game-over-sound-effects-snd-effects.mp3";
-var bulletses = new Audio();
-bulletses.src = "sounds/mario-ziplama-sesi.mp3";
+var bgses = new Audio();
+bgses.src = "sounds/background.mp3";
 
 const background = new Image();
 background.src = "https://user-images.githubusercontent.com/54938901/117718838-54025c00-b1e5-11eb-8a60-9c63390ac9f6.jpg";
@@ -38,7 +38,7 @@ canvas.addEventListener("mousemove", (e) => {
 
 canvas.addEventListener("click", (e) => {
     if (playing) {
-        bulletses.play();
+
         bullets.push(new Circle(player.x, player.y, e.pageX, e.pageY, 5, 'white', 5)); //her tıklanmada mermi oluşumunu sağlar.
     }
 
@@ -245,6 +245,7 @@ function collision(x1, y1, r1, x2, y2, r2) { //daireler birbirine değdi mi?
 
 function animate() { //Oyun Çalıştırılır.
     if (playing) {
+
         requestAnimationFrame(animate);
         var grd = ctx.createLinearGradient(0, 0, width, height);
         grd.addColorStop(0, "#360638");
@@ -345,6 +346,7 @@ function stop() {
 }
 
 function init() {
+    bgses.play();
     playing = true;
     kills = 0;
     score = 0;
